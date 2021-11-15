@@ -182,9 +182,10 @@ EditTextInput: {
   height: 100,
   color: "#FFFF",
   fontSize:16,
-  paddingTop:10,
+  // paddingTop:10,
   borderWidth: 1,
-  borderColor: "#FFFF"
+  borderColor: "#FFFF",
+  marginRight: 3,
 },
 //end ABOUT GYM //
 // start contack //
@@ -307,7 +308,130 @@ imageGallery: {
  width: "100%",
  resizeMode:"cover",
  borderRadius: 10
-}
+},
 // end of gallery //
+// start Board //
+containBoard :{
+  marginTop: 30,
+  width: Width,
+  height: 220,
+  backgroundColor: "black",
+  padding: 10,
+},
+subContainBoard:{
+  width: "100%",
+  height: "100%",
+  backgroundColor: "#404040",
+  borderRadius: 5,
+  padding: 12,
+},
+conBoard: {
+  width: "100%",
+  height: "77%",
+},
+navboard: {
+  width: "100%",
+  height: 50,
+  borderRadius: 5,
+  backgroundColor:"black",
+  padding: 7,
+  flexDirection: "row"
+},
+board: {
+  width: "50%",
+  height: "100%",
+  backgroundColor: "#404040",
+  borderRadius: 5,
+  justifyContent: "center"
+},
+boardText:{
+  color: "#FFFF",
+  textAlign: "center"
+},
+opening: {
+  width: "50%",
+  height: "100%",
+  backgroundColor: "black",
+  borderRadius: 5,
+  justifyContent: "center"
+},
+openingText: {
+  color: "#FFFF",
+  textAlign: "center",
+},
+introducing: {
+  width: "100%",
+  height: "85%",
+  flexDirection: "row",
+  marginTop: 12
+},
+subintroducing: {
+  width: "85%",
+  height: "100%",
+},
+containEdite: {
+  width:"15%",
+  height: "100%",
+  justifyContent:"space-between",
+  alignItems: "center"
+},
+introducingText :{
+  color: "#FFFF",
+  fontSize: 16,
+  paddingBottom: 10,
+
+},
+// end of board //
+// start gym trainers //
+containGymTrainers: {
+  width: Width,
+  height: 280,
+  padding: 10,
+  marginTop: 30
+  
+},
+subConGymTrainers: {
+  width: "100%",
+  height: "100%",
+},
+conTextGymTrainers: {
+  width: "100%",
+  height: 40,
+  justifyContent: "center"
+},
+textGymTrainers : {
+  fontSize: 18,
+  fontWeight: "bold",
+  paddingLeft: 20,
+  color: "#FFFF"
+},
+imageSilderGymTrain: {
+  width: 120,
+  height: "100%",
+  borderRadius: 5,
+  resizeMode: "cover",
+  marginRight: 16,
+  marginTop: 15,
+},
+conGymTrainNextBack:{
+  width: "100%",
+  height: 30,
+  marginTop: 60,
+  alignItems: 'flex-end',
+},
+btnNextBack: {
+  flexDirection: "row",
+  width: "30%",
+  justifyContent: "space-between"
+},
+btnBack:{
+  backgroundColor: "#404040",
+  paddingHorizontal: 12,
+  paddingVertical: 2,
+  borderRadius:5,
+}
+// end gym trainers //
+
+
 
 })

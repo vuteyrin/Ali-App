@@ -97,7 +97,7 @@ const Home = ()=> {
                type="text" 
                style={stylehome.EditTextInput} 
                value={aboutgym} 
-               onChange={(e)=>setAboutgym(e) }
+               onChangeText={(e)=>setAboutgym(e)}
                numberOfLines={10}
                multiline={true} />
               :<Text style={stylehome.conTextAboutGym}>{aboutgym}</Text> }
@@ -189,7 +189,7 @@ const Home = ()=> {
                 </View>
               </View>
               <View style={stylehome.GalleryColTow}>
-               <Image style={stylehome.imageGallery} source={{uri: 'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z3ltfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80'}}/>
+               <Image style={stylehome.imageGallery} source={{uri: 'https://m.media-amazon.com/images/I/71Zt7no5nyS._AC_SL1500_.jpg'}}/>
             </View>
           </View>
         </View>
@@ -199,6 +199,75 @@ const Home = ()=> {
           </View>
         </View>
       </View>
+      {/* end Gallary  */}
+      {/* start board  */}
+      <View style={stylehome.containBoard}>
+        <View style={stylehome.subContainBoard}>
+          <View style={stylehome.conBoard}>
+            <View style={stylehome.navboard}>
+              <View style={stylehome.board}>
+                <Text style={stylehome.boardText}>BOARD</Text>
+              </View>
+              <View style={stylehome.opening}>
+                <Text style={stylehome.openingText}>OPENING HOURS</Text>
+              </View>
+            </View>
+            <View style={stylehome.introducing}>
+              <View style={stylehome.subintroducing}>
+                <Text style={stylehome.introducingText}> - Intruducing new member 1 </Text>
+                <Text style={stylehome.introducingText}> - new year close date</Text>
+                <Text style={stylehome.introducingText}> - new year close date</Text>
+                <Text style={stylehome.introducingText}> - new year close date</Text>
+              </View>
+              <View style={stylehome.containEdite}>
+                 <TouchableWithoutFeedback onPress={() => setOpenEdit(!openEdit)}>
+                    <View style={stylehome.btnAboutEdit}>
+                      <MaterialIcons name="mode-edit" size={20} color="#FFFF" />
+                    </View>
+                  </TouchableWithoutFeedback>
+                  <TouchableWithoutFeedback>
+                    <View style={stylehome.btnAboutEdit}>
+                      <AntDesign name="arrowdown" size={20} color="#FFFF" />
+                    </View>
+                </TouchableWithoutFeedback>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      {/* end board  */}
+      {/* gym trainers  */}
+      <View style={stylehome.containGymTrainers}>
+        <View style={stylehome.subConGymTrainers}>
+          <View style={stylehome.conTextGymTrainers}>
+            <Text style={stylehome.textGymTrainers}>GYM TRAINERS</Text>
+          </View>
+          <View style={stylehome.conSlider}>
+            <View>
+              <Image style={stylehome.imageSilderGymTrain} 
+              source={{uri: 'https://www.ucd.ie/sportandfitness/t4media/Banner-Gym-Floor.jpg'}}/>
+              <Text style={{color: "#FFFF",paddingVertical: 10}}>Max Leto</Text>
+            </View>
+            <View>
+              <Image style={stylehome.imageSilderGymTrain} 
+              source={{uri: 'https://us.123rf.com/450wm/wertinio/wertinio2004/wertinio200400161/146918520-brutal-athletic-girl-pumping-up-muscules-with-dumbbells-and-showing-her-trained-body-.jpg?ver=6'}}/>
+              <Text style={{color: "#FFFF",paddingVertical: 10}}>Ellen Watts</Text>
+            </View>
+            <View>
+              <Image style={stylehome.imageSilderGymTrain} 
+              source={{uri: 'https://www.fitness19.com/wp-content/uploads/2014/05/photodune-7566509-personal-trainer-helping-woman-at-gym-xs-548x330.jpg'}}/>
+              <Text style={{color: "#FFFF",paddingVertical: 10}}>Michel l</Text>
+            </View>
+          </View>
+          <View style={stylehome.conGymTrainNextBack}>
+            <View style={stylehome.btnNextBack}>
+              <View style={stylehome.btnBack}><Ionicons name="arrow-back-outline" size={20} color="#FFFF" /></View>
+              <View style={stylehome.btnBack}><Ionicons name="arrow-forward-outline" size={20} color="#FFFF" /></View>
+            </View>
+          </View>
+        </View>
+      </View>
+      {/* end gym tainers  */}
     </View>
   );
  }
