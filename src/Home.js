@@ -5,11 +5,13 @@ import React,{useState} from 'react';
 import { MaterialIcons,AntDesign,FontAwesome,Ionicons } from '@expo/vector-icons';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import stylehome from '../style/homeStyle'
+import Root from '../component/root';
 const Home = ()=> {
  const [aboutgym,setAboutgym] = useState("We can also detect whenever the value new character inside this field, we then take the current value that is inside the field and update our state.");
  const [openEdit,setOpenEdit] = useState(false)
 
   return (
+    <Root>
     <View style={stylehome.home}>
     {/* start nav  */}
       <View style={stylehome.nav}>
@@ -269,6 +271,7 @@ const Home = ()=> {
       </View>
       {/* end gym tainers  */}
     </View>
+    </Root>
   );
  }
  export default Home

@@ -7,7 +7,7 @@ export default StyleSheet.create({
     width: Width,
     height: Heigth,
     color: "#FFFF",
-    marginTop: 35,
+    // marginTop: 35,
     backgroundColor: "black",
    
 

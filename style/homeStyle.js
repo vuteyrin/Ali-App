@@ -6,6 +6,8 @@ export default  StyleSheet.create({
   home:{
     alignItems: "center",
     justifyContent: "center",
+    // height: Heigth,
+    // width: Width,
   },
   // nav header //
   nav: {

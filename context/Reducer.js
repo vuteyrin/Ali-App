@@ -1,7 +1,7 @@
 export const initialState = {
   language: true,
 };
-
+export const colorapp = "#FF0000";
 export const actionTypes = {
   LANGUAGE: "LANGUAGE",
   
