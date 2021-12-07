@@ -14,13 +14,50 @@ export default  StyleSheet.create({
       justifyContent: "center",
   },
   cartSlide: {
-      width: "95%",
-      height: "95%",
+      width: "100%",
+      height: "100%",
       backgroundColor: "yellow"
   },
   img: {
     width: "100%",
     height: "100%",
-    resizeMode: 'contain',
+    resizeMode: 'cover',
+
   },
+  imgCart: {
+    width: "100%",
+    height: "100%",
+    resizeMode: 'cover',
+    borderRadius: 5
+  },
+  body: {
+    alignItems: "center",
+    justifyContent: "center",
+
+  },
+  conbodycart: {
+    // flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    position: "relative",
+    
+  },
+  bodycart: {
+    // backgroundColor: "pink",
+    width: Width/2.2,
+    height: Width/1.5,
+    margin: 8
+  },
+  conTitle: {
+    position: "absolute",
+    left:1,
+    bottom: 1
+    
+  },
+  titleCart: {
+    color: "#FFFF"
+  },
+  renting: {
+    flexDirection: "row"
+  }
 })

@@ -1,8 +1,6 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../src/Home';
-import Notificat from '../src/Notificat';
 import {StackHome,StackMovie} from './Stack';
 import { FontAwesome5,MaterialIcons,FontAwesome } from "@expo/vector-icons";
 import { colorapp } from '../context/Reducer';

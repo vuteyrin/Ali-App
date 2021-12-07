@@ -10,15 +10,13 @@ import "firebase/firestore";
 
 // Initialize Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyAq_xhVY8piz8m6CXOQRBHNN5UUTHyDaXE",
-    authDomain: "share-2ef37.firebaseapp.com",
-    databaseURL: "https://share-2ef37-default-rtdb.firebaseio.com",
-    projectId: "share-2ef37",
-    storageBucket: "share-2ef37.appspot.com",
-    messagingSenderId: "1004394721330",
-    appId: "1:1004394721330:web:75c8b0a43fc696a87e0c2b",
-    measurementId: "G-9ZMNDHB8WS"
-  };
+  apiKey: "AIzaSyBeXy9p6CMhFozS8yAJ3GCfy5PBqqScbR4",
+  authDomain: "movie24.firebaseapp.com",
+  projectId: "movie24",
+  storageBucket: "movie24.appspot.com",
+  messagingSenderId: "369875114172",
+  appId: "1:369875114172:web:67ea8f86d777b2838158b9"
+};
 
 
 firebase.initializeApp(firebaseConfig);

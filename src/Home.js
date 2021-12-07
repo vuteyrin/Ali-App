@@ -6,6 +6,7 @@ import { MaterialIcons,AntDesign,FontAwesome,Ionicons } from '@expo/vector-icons
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import stylehome from '../style/homeStyle'
 import Root from '../component/root';
+import Header from '../component/Header';
 const Home = ()=> {
  const [aboutgym,setAboutgym] = useState("We can also detect whenever the value new character inside this field, we then take the current value that is inside the field and update our state.");
  const [openEdit,setOpenEdit] = useState(false)
@@ -272,6 +273,7 @@ const Home = ()=> {
       {/* end gym tainers  */}
     </View>
     </Root>
+
   );
  }
  export default Home
