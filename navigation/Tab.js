@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {StackHome,StackMovie} from './Stack';
+import {StackHome,StackMovie,StackPlayVideo,StackAccount} from './Stack';
 import { FontAwesome5,MaterialIcons,FontAwesome } from "@expo/vector-icons";
 import { colorapp } from '../context/Reducer';
 const TabHome = () => {
@@ -41,7 +41,7 @@ const TabHome = () => {
         />
         <Tab.Screen 
          name="Explore" 
-          component={StackMovie}
+          component={StackPlayVideo}
            options={{
             tabBarIcon: ({ focused }) => (
               <View
@@ -61,7 +61,7 @@ const TabHome = () => {
         />
          <Tab.Screen 
          name="Account" 
-          component={StackHome}
+          component={StackAccount}
            options={{
             tabBarIcon: ({ focused }) => (
               <View

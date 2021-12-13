@@ -8,9 +8,18 @@ export default  StyleSheet.create({
         // backgroundColor: '#ecf0f1',
       },
       video: {
+        flex: 1,
         alignSelf: 'center',
+        justifyContent: "center",
+        alignItems: "center",
         width: Width,
         height: 200,
+        // transform: [
+        //   { rotateY: "0deg" },
+        //   { rotateZ: "90deg" }
+        // ],
+    
+        // marginTop: 10,
       },
       buttons: {
         flexDirection: 'row',
@@ -20,7 +29,7 @@ export default  StyleSheet.create({
       conTitle: {
         //  backgroundColor: "red",
          width: Width,
-         height: 130,
+        //  height: 130,
          padding: 5,
          
       },
@@ -39,12 +48,17 @@ export default  StyleSheet.create({
         flexDirection: "row"
       },
       btnPlay: {
+        width: 100,
           backgroundColor: "red",
           justifyContent: "center",
           alignItems: "center",
           padding: 5,
           marginVertical: 10,
           borderRadius: 5,
+          // transform: [
+          //   { rotateY: "0deg" },
+          //   { rotateZ: "90deg" }
+          // ],
       },
       btnPlayText: {
           color: "#FFFF"

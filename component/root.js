@@ -8,7 +8,6 @@ const Root = ({children}) => {
  return (
   <SafeAreaView style={styles.container}>
   <Header/>
-  <StatusBar style={'auto'}/>
   <ScrollView>
     <View>
      {children}

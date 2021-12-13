@@ -4,8 +4,11 @@ import Root from '../component/root'
 import stylemovie from '../style/movieStyle';
 import {db} from "../api/firebase"
 import { Entypo,FontAwesome } from '@expo/vector-icons';
+import  VeiwVideo from "../component/model/ViewVideo"
 const Movie = ({ navigation, route }) => {
     const [products,setProducts] = useState([]);
+    const [viewVideo,setViewVideo] = useState(false)
+    const [videoData,setVideoData] = useState()
     const getProducts = async() => {
         const pro = await db.collection('movies_list').onSnapshot
        (querySnapshot => {
@@ -16,13 +19,19 @@ const Movie = ({ navigation, route }) => {
           });
           setProducts(item)
         });
-        }
+      }
+    const handleGetData = (item) =>{
+      setVideoData(item),
+      setViewVideo(!viewVideo)
+    }
     
         React.useEffect(()=>{
           getProducts()
         },[])
+
     return (
         <Root>
+         {viewVideo&& <VeiwVideo viewVideo={viewVideo} setViewVideo={setViewVideo} data={videoData}/>}  
             <View style={stylemovie.movie}>
              <View style={stylemovie.conSlide}>
               <View style={stylemovie.cartSlide}>
@@ -35,7 +44,8 @@ const Movie = ({ navigation, route }) => {
                <View style={stylemovie.conbodycart}>
                  {products.map((item,index) =>{
                    return(
-                    <TouchableOpacity key={index} activeOpacity={0.9} underlayColor="#FFFF" onPress={() => navigation.navigate("Play")}>
+                    <TouchableOpacity key={index} activeOpacity={0.9} 
+                    underlayColor="#FFFF" onPress={() => handleGetData(item)}>
                      <View style={stylemovie.bodycart}>
                       <Image  style={stylemovie.imgCart} source={{uri: item.image}}/>
                        <View style={stylemovie.conTitle}>
