@@ -13,7 +13,7 @@ export default  StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         width: Width,
-        height: 200,
+        height: 75,
         // transform: [
         //   { rotateY: "0deg" },
         //   { rotateZ: "90deg" }
@@ -29,7 +29,7 @@ export default  StyleSheet.create({
       conTitle: {
         //  backgroundColor: "red",
          width: Width,
-        //  height: 130,
+         height: 80,
          padding: 5,
          
       },

@@ -1,18 +1,45 @@
 
 import 'react-native-gesture-handler'
-import { Text, View, StyleSheet, Image,Linking ,Dimensions,TextInput} from 'react-native';
+import { Text, View,ScrollView, StyleSheet, Image,Linking ,Dimensions,TextInput} from 'react-native';
 import React,{useState} from 'react';
 import { MaterialIcons,AntDesign,FontAwesome,Ionicons } from '@expo/vector-icons';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import stylehome from '../style/homeStyle'
 import Root from '../component/root';
 import Header from '../component/Header';
+// import * as actions from '../Redux/Actions/cartActions'
+// import { connect } from 'react-redux';
+import {db} from "../api/firebase";
+import * as ScreenOrientation from 'expo-screen-orientation';
 const Home = ()=> {
- const [aboutgym,setAboutgym] = useState("We can also detect whenever the value new character inside this field, we then take the current value that is inside the field and update our state.");
+ const [aboutgym,setAboutgym] = useState("");
  const [openEdit,setOpenEdit] = useState(false)
+ const [viewVideo,setViewVideo] = useState(false)
+ const [videoData,setVideoData] = useState()
+ const [products,setProducts] = useState([]);
+ const getProducts = async() => {
+  const pro = await db.collection('movies_list').onSnapshot
+ (querySnapshot => {
+    const item = [];
+    const id = []
+    querySnapshot.forEach(doc => {
+      item.push({...doc.data(), id: doc.id})
+    });
+    setProducts(item)
+  });
+  }
+  const handleGetData = (item) =>{
+    setVideoData(item),
+    setViewVideo(!viewVideo)
+  }
+  React.useEffect(()=>{
+    getProducts();
+  },[])
 
+console.log(products)
   return (
     <Root>
+      <Header/>
     <View style={stylehome.home}>
     {/* start nav  */}
       <View style={stylehome.nav}>
@@ -27,16 +54,13 @@ const Home = ()=> {
         <View style={stylehome.ImageEdit}>
           <View style={stylehome.conEditImag}>
              <View>
-                <Image style={stylehome.cartEdit} source={{uri: 'https://images.yaoota.com/BfoseD4p9GAFkiQZin5pf0Q2SPQ=/trim/yaootaweb-production-ke/media/crawledproductimages/75e682d82e48b116f918fa1c44b8c791ba22a93a.jpg'}}/>
-              </View>
-              <View style={stylehome.cartIcon}>
-                <MaterialIcons name="mode-edit" size={20} color="#FFFF" />
+                <Image style={stylehome.cartEdit} source={{uri: products[2]?.image}}/>
               </View>
             </View>
             <View style={stylehome.conEnergy}>
               <View style={stylehome.Energy}>
-                <Text style={stylehome.EnergyText}>Energy Gym</Text>
-                <Text style={stylehome.EnergysmallText}>Gym</Text>
+                <Text style={stylehome.EnergyText}>{products[2]?.title}</Text>
+                <Text style={stylehome.EnergysmallText}>moive</Text>
               </View>
               <View style={ stylehome.conPost}>
                 <View style={stylehome.conTextPos}>
@@ -92,18 +116,12 @@ const Home = ()=> {
       <View style={stylehome.aboutGym}>
         <View style={stylehome.conAboutGym}>
           <View style={stylehome.titleAboutGym}>
-            <View><Text style={{color:"#FFFF",fontSize:18,fontWeight:"bold"}}>ABOUT GTY</Text></View>
+            <View><Text style={{color:"#FFFF",fontSize:18,fontWeight:"bold"}}>ABOUT MY APP</Text></View>
             <View>
-              {openEdit? 
-               <TextInput 
-               autoFocus
-               type="text" 
-               style={stylehome.EditTextInput} 
-               value={aboutgym} 
-               onChangeText={(e)=>setAboutgym(e)}
-               numberOfLines={10}
-               multiline={true} />
-              :<Text style={stylehome.conTextAboutGym}>{aboutgym}</Text> }
+              <Text style={stylehome.conTextAboutGym}>
+                I make this app is learnning.This app is make from React Native.
+                Just view video.
+              </Text>
             </View>
           </View>
           <View style={stylehome.AboutGymedit}>
@@ -137,7 +155,7 @@ const Home = ()=> {
               <Ionicons name="earth" size={24} color="black"  onPress={()=> Linking.openURL("https://web.facebook.com/?_rdc=1&_rdr")} />
             </View>
             <View>
-              <Text style={{color:"#FFFF",fontSize: 16}}>Ninijafits.com</Text>
+              <Text style={{color:"#FFFF",fontSize: 16}}>rinvutey.com</Text>
             </View>
           </View>
           <View style={stylehome.iconContact}>
@@ -145,7 +163,7 @@ const Home = ()=> {
               <Ionicons name="ios-location-sharp" size={24} color="black"  onPress={()=> Linking.openURL("https://www.google.com/maps")} />
             </View>
             <View>
-              <Text style={{color: "#FFFF",fontSize: 16}}>Tokyo.Japen</Text>
+              <Text style={{color: "#FFFF",fontSize: 16}}>Cambodian Siem Reap</Text>
             </View>
           </View>
         </View>
@@ -157,17 +175,20 @@ const Home = ()=> {
           <View style={stylehome.postTitle}>
             <Text style={{color:"#FFFF",fontSize: 18,fontWeight:"bold"}}>Posts</Text>
           </View>
+          <ScrollView showsHorizontalScrollIndicator={true} >
           <View style={stylehome.conSlider}>
-            <View>
-              <Image style={stylehome.imageSilder} source={{uri: 'https://media.istockphoto.com/photos/fitness-sport-training-gym-success-and-lifestyle-concept-group-of-picture-id1282884610?b=1&k=20&m=1282884610&s=170667a&w=0&h=WcpwYC59VH5yeK7N5av_nRUXtNKKKapuoCQdxt9thHA='}}/>
-            </View>
-            <View>
-              <Image style={stylehome.imageSilder} source={{uri: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Z3ltfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'}}/>
-            </View>
-            <View>
-              <Image style={stylehome.imageSilder} source={{uri: 'https://media.istockphoto.com/photos/you-are-strong-strong-is-you-picture-id1288737452?b=1&k=20&m=1288737452&s=170667a&w=0&h=NIGqhjD9Nlp92PM3ORBr6wft1o-1h33ti7OaXmFan84='}}/>
-            </View>
+            {products && products?.map((item, ind)=>{
+              return(
+              <TouchableOpacity>
+               <View key={ind}>
+                <Image style={stylehome.imageSilder} source={{uri: item.image}}/>
+               </View>
+              </TouchableOpacity>
+              )
+            })}
+
           </View>
+          </ScrollView>
           <View style={stylehome.nextSlider}>
               <View style={stylehome.btnMoveSlide}>
                 <AntDesign name="arrowright" size={20} color="#FFFF" />
@@ -185,14 +206,14 @@ const Home = ()=> {
             <View style={stylehome.GalleryRow}>
               <View style={stylehome.GalleryColOne}>
                 <View style={stylehome.GalleryColin}>
-                  <Image style={stylehome.imageGallery} source={{uri: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Z3ltfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80'}}/>
+                  <Image style={stylehome.imageGallery} source={{uri: products[3]?.image}}/>
                 </View>
                 <View  style={stylehome.GalleryColout}>
-                 <Image style={stylehome.imageGallery} source={{uri: 'https://img.freepik.com/free-photo/strong-man-training-gym_1303-23478.jpg?size=626&ext=jpg'}}/>
+                 <Image style={stylehome.imageGallery} source={{uri: products[2]?.image}}/>
                 </View>
               </View>
               <View style={stylehome.GalleryColTow}>
-               <Image style={stylehome.imageGallery} source={{uri: 'https://m.media-amazon.com/images/I/71Zt7no5nyS._AC_SL1500_.jpg'}}/>
+               <Image style={stylehome.imageGallery} source={{uri: products[0]?.image}}/>
             </View>
           </View>
         </View>
@@ -209,18 +230,18 @@ const Home = ()=> {
           <View style={stylehome.conBoard}>
             <View style={stylehome.navboard}>
               <View style={stylehome.board}>
-                <Text style={stylehome.boardText}>BOARD</Text>
+                <Text style={stylehome.boardText}>APP</Text>
               </View>
               <View style={stylehome.opening}>
-                <Text style={stylehome.openingText}>OPENING HOURS</Text>
+                <Text style={stylehome.openingText}>GOALD</Text>
               </View>
             </View>
             <View style={stylehome.introducing}>
               <View style={stylehome.subintroducing}>
-                <Text style={stylehome.introducingText}> - Intruducing new member 1 </Text>
-                <Text style={stylehome.introducingText}> - new year close date</Text>
-                <Text style={stylehome.introducingText}> - new year close date</Text>
-                <Text style={stylehome.introducingText}> - new year close date</Text>
+                <Text style={stylehome.introducingText}> - JUST FOR FUN </Text>
+                <Text style={stylehome.introducingText}> - REARN REACT NATIVE</Text>
+                <Text style={stylehome.introducingText}> - WATCH SOME MOVIE</Text>
+                <Text style={stylehome.introducingText}> - KNOWLEGE</Text>
               </View>
               <View style={stylehome.containEdite}>
                  <TouchableWithoutFeedback onPress={() => setOpenEdit(!openEdit)}>
@@ -243,24 +264,22 @@ const Home = ()=> {
       <View style={stylehome.containGymTrainers}>
         <View style={stylehome.subConGymTrainers}>
           <View style={stylehome.conTextGymTrainers}>
-            <Text style={stylehome.textGymTrainers}>GYM TRAINERS</Text>
+            <Text style={stylehome.textGymTrainers}>MOVIE JUM</Text>
           </View>
           <View style={stylehome.conSlider}>
-            <View>
-              <Image style={stylehome.imageSilderGymTrain} 
-              source={{uri: 'https://www.ucd.ie/sportandfitness/t4media/Banner-Gym-Floor.jpg'}}/>
-              <Text style={{color: "#FFFF",paddingVertical: 10}}>Max Leto</Text>
-            </View>
-            <View>
-              <Image style={stylehome.imageSilderGymTrain} 
-              source={{uri: 'https://us.123rf.com/450wm/wertinio/wertinio2004/wertinio200400161/146918520-brutal-athletic-girl-pumping-up-muscules-with-dumbbells-and-showing-her-trained-body-.jpg?ver=6'}}/>
-              <Text style={{color: "#FFFF",paddingVertical: 10}}>Ellen Watts</Text>
-            </View>
-            <View>
-              <Image style={stylehome.imageSilderGymTrain} 
-              source={{uri: 'https://www.fitness19.com/wp-content/uploads/2014/05/photodune-7566509-personal-trainer-helping-woman-at-gym-xs-548x330.jpg'}}/>
-              <Text style={{color: "#FFFF",paddingVertical: 10}}>Michel l</Text>
-            </View>
+         
+           {products&& products?.map((item,ind) =>{
+             return(
+              <TouchableOpacity>
+                <View key={ind}>
+                  <Image style={stylehome.imageSilderGymTrain} 
+                  source={{uri: item?.image }}/>
+                  <Text style={{color: "#FFFF",paddingVertical: 10}}>Michel l</Text>
+                </View>
+              </TouchableOpacity>
+             )
+           })}
+     
           </View>
           <View style={stylehome.conGymTrainNextBack}>
             <View style={stylehome.btnNextBack}>
@@ -276,4 +295,5 @@ const Home = ()=> {
 
   );
  }
+
  export default Home

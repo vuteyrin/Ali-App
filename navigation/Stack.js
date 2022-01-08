@@ -5,6 +5,7 @@ import Home from '../src/Home';
 import Movie from '../src/Movie';
 import VideoPlay from '../src/VideoPlay';
 import Account from '../src/Account';
+import Favorite from '../src/Favorite';
 const Stack = createStackNavigator();
 const StackHome = () => {
   return (
@@ -35,5 +36,12 @@ const StackAccount = () => {
       </Stack.Navigator>
     );
   };
+  const StackFavorite = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="Movie" component={Favorite} options={{headerShown: false}} />
+      </Stack.Navigator>
+    );
+  };
   
-export {StackHome,StackMovie,StackPlayVideo,StackAccount}
+export {StackHome,StackMovie,StackPlayVideo,StackAccount,StackFavorite}

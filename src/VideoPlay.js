@@ -1,5 +1,5 @@
 import React,{useState}  from 'react'
-import { View, TouchableOpacity, Image,Text } from 'react-native';
+import { View, TouchableOpacity, Image,Text,StyleSheet } from 'react-native';
 import { Video, AVPlaybackStatus } from 'expo-av';
 import playStyle from '../style/playStyle';
 import stylemovie from '../style/movieStyle';
@@ -8,6 +8,7 @@ import { Entypo,FontAwesome } from '@expo/vector-icons';
 import {db} from "../api/firebase";
 import { WebView } from 'react-native-webview';
 import  VeiwVideo from "../component/model/ViewVideo"
+import Header from '../component/Header';
 const VideoPlay = ({navigation,route}) => {
     // const {data} = route?.params;
     const video = React.useRef(null);
@@ -36,11 +37,19 @@ const VideoPlay = ({navigation,route}) => {
 
         },[])
 
+    if(products.length === 0){
+    return(
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    )  
+    }else{
     return (
       <Root>
+      <Header />
       {viewVideo&& <VeiwVideo viewVideo={viewVideo} setViewVideo={setViewVideo} data={videoData}/>}  
        <View style={playStyle.container}>
-        <Video
+        {/* <Video
             ref={video}
             style={playStyle.video}
             source={{
@@ -50,7 +59,7 @@ const VideoPlay = ({navigation,route}) => {
             resizeMode="contain"
             isLooping
             onPlaybackStatusUpdate={status => setStatus(() => status)}
-         />
+         /> */}
           {/* <WebView 
             style={playStyle.video}
             source={{ uri:dataPlay?.data?.url}}
@@ -67,11 +76,11 @@ const VideoPlay = ({navigation,route}) => {
               <Entypo name="star" size={20} color="orange" />
               <Entypo name="star-outlined" size={20} color="#FFFF" />
             </View>
-            <TouchableOpacity onPress={() => status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()}>
+            {/* <TouchableOpacity onPress={() => status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()}>
              <View style={playStyle.btnPlay}>
               <Text style={playStyle.btnPlayText}>{status.isPlaying ? 'Pause' : 'Play'}</Text>
              </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
          </View>
          <View style={stylemovie.body}>
             <View style={stylemovie.conbodycart}>
@@ -101,6 +110,17 @@ const VideoPlay = ({navigation,route}) => {
       </View>
      </Root>
     )
+  }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+
+  }
+})
+
 
 export default VideoPlay

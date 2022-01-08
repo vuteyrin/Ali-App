@@ -4,7 +4,9 @@ import Root from '../component/root'
 import stylemovie from '../style/movieStyle';
 import {db} from "../api/firebase"
 import { Entypo,FontAwesome } from '@expo/vector-icons';
-import  VeiwVideo from "../component/model/ViewVideo"
+import  VeiwVideo from "../component/model/ViewVideo";
+import Header from "../component/Header";
+import * as ScreenOrientation from 'expo-screen-orientation';
 const Movie = ({ navigation, route }) => {
     const [products,setProducts] = useState([]);
     const [viewVideo,setViewVideo] = useState(false)
@@ -27,11 +29,13 @@ const Movie = ({ navigation, route }) => {
     
         React.useEffect(()=>{
           getProducts()
+          ScreenOrientation.unlockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
         },[])
 
     return (
         <Root>
-         {viewVideo&& <VeiwVideo viewVideo={viewVideo} setViewVideo={setViewVideo} data={videoData}/>}  
+          <Header/>
+         {viewVideo&& <VeiwVideo navigation={navigation} viewVideo={viewVideo} setViewVideo={setViewVideo} data={videoData}/>}  
             <View style={stylemovie.movie}>
              <View style={stylemovie.conSlide}>
               <View style={stylemovie.cartSlide}>
@@ -70,4 +74,5 @@ const Movie = ({ navigation, route }) => {
         </Root>
     )
 }
+
 export default Movie

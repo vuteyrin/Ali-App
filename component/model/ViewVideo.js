@@ -1,90 +1,45 @@
-import React,{useState} from "react";
-import {View,Image,TouchableOpacity,Dimensions, Modal,StyleSheet,Text} from "react-native";
+import React,{useState,useRef} from "react";
+import {View,Image,StatusBar,Dimensions, Modal,StyleSheet,Text, BackHandler} from "react-native";
 import { WebView } from 'react-native-webview';
-import { Entypo,Ionicons,EvilIcons,Feather} from '@expo/vector-icons';
-import stylemovie from '../../style/movieStyle';
 import {db} from "../../api/firebase";
-import Root from "../root";
-import style from "../../style/style";
-import { NativeScreenNavigationContainer } from "react-native-screens";
-import { NavigationContainer } from "@react-navigation/native";
+import { Ionicons,AntDesign } from '@expo/vector-icons';
+import { ScrollView } from "react-native-gesture-handler";
+import * as ScreenOrientation from 'expo-screen-orientation';
 export default function VeiwVideo({data,viewVideo,setViewVideo}) {
-    const [products,setProducts] = useState([]);
-    const [status, setStatus] = React.useState({});
-    const [dataPlay,setDataPlay] = useState(data)
-    const getProducts = async() => {
-        const pro = await db.collection('movies_list').onSnapshot
-       (querySnapshot => {
-          const item = [];
-          const id = []
-          querySnapshot.forEach(doc => {
-            item.push({...doc.data(), id: doc.id})
-          });
-          setProducts(item)
-        });
-        }
-        const handeChangeMovie=(item)=>{
-            setDataPlay(item);
-            navigation.navigate("Search")
-        }
-        React.useEffect(()=>{
-          getProducts();
-        },[])
+   const handleClose = () =>{
+      ScreenOrientation.unlockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
+      setViewVideo(!viewVideo)
+   }
+   React.useEffect(()=>{
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
+  
+    },[])
   return (
       <Modal visible={viewVideo}>
-        <Root>
-         <View style={playStyle.container}>
-          <WebView style={playStyle.video} source={{ uri:dataPlay?.url}}/>
-           <View style={stylemovie.body}>
-            <View style={stylemovie.conbodycart}>
-                 {products.map((item,index) =>{
-                   return(
-                    <TouchableOpacity key={index} activeOpacity={0.9} onPress={()=> handleGetData(item)}>
-                     <View style={stylemovie.bodycart}>
-                      <Image  style={stylemovie.imgCart} source={{uri: item.image}}/>
-                       <View style={stylemovie.conTitle}>
-                        <View style={stylemovie.renting}>
-                         <Entypo name="star" size={20} color="orange" />
-                         <Entypo name="star" size={20} color="orange" />
-                         <Entypo name="star" size={20} color="orange" />
-                         <Entypo name="star" size={20} color="orange" />
-                         <Entypo name="star-outlined" size={20} color="#FFFF" />
-                        </View>
-                        <View>
-                         <Text style={stylemovie.titleCart}>{item.title}</Text>
-                       </View>
-                      </View>
-                     </View>
-                   </TouchableOpacity>
-                   )
-                 })}
-               </View>
-             </View>
-         </View>
-       </Root>
+        <ScrollView>
+          <View style={playStyle.header}>
+            <StatusBar barStyle="dark" />
+            {/* <AntDesign name="dingding" size={24} /> */}
+            <Ionicons name="arrow-back-outline" size={24} color="#FFFF" onPress={()=> handleClose()} />
+            <Ionicons name="md-menu" size={24} color="#FFFF" />
+          </View>
+         <WebView style={playStyle.container} source={{ uri:data?.url}}/>
+        </ScrollView>
       </Modal>
       
   );
 }
-
 const Heigth = Dimensions.get("screen").height;
 const Width = Dimensions.get("screen").width;
 const playStyle= StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        width: Width,
-        height: Heigth,
-      },
-      video: {
         flex: 1,
-        alignSelf: 'center',
-        justifyContent: "center",
-        alignItems: "center",
-        width: Width,
-        height: Heigth,
+        height: Width+35,
       },
-      conTitle: {
-         width: Width,      
+      header: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        padding: 5,
+        backgroundColor: "black"
       },
-  
 })

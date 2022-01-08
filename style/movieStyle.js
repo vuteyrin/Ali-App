@@ -33,7 +33,6 @@ export default  StyleSheet.create({
   body: {
     alignItems: "center",
     justifyContent: "center",
-
   },
   conbodycart: {
     // flex: 1,

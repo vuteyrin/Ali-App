@@ -408,7 +408,7 @@ textGymTrainers : {
   color: "#FFFF"
 },
 imageSilderGymTrain: {
-  width: 120,
+  width: 100,
   height: "100%",
   borderRadius: 5,
   resizeMode: "cover",
